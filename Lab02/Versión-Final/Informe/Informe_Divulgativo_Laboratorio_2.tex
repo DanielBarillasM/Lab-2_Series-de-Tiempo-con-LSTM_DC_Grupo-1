@@ -1,0 +1,554 @@
+% Compilar con: pdflatex Informe_Divulgativo_Laboratorio_2_10_Paginas.tex
+% Documento diseñado para producir exactamente 10 páginas.
+\documentclass[10pt,letterpaper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage[letterpaper,margin=1.65cm,headheight=14pt,footskip=22pt]{geometry}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{lastpage}
+
+\definecolor{Navy}{HTML}{102A43}
+\definecolor{Blue}{HTML}{176B87}
+\definecolor{Teal}{HTML}{2A9D8F}
+\definecolor{Cyan}{HTML}{2E86AB}
+\definecolor{Gold}{HTML}{E9A23B}
+\definecolor{Red}{HTML}{D95D39}
+\definecolor{Ink}{HTML}{183247}
+\definecolor{Soft}{HTML}{F2F7FA}
+\definecolor{SoftGreen}{HTML}{EAF8F4}
+\definecolor{SoftGold}{HTML}{FFF5DF}
+\definecolor{Line}{HTML}{D5E3EB}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=Blue,
+  urlcolor=Cyan,
+  pdftitle={Laboratorio 2 - Informe para público general},
+  pdfauthor={Jorge Gabriel Palacios Sales, Pablo Daniel Barillas Moreno y Roberto Emiliano Otoniel Camposeco Torres}
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\color{Navy}\textbf{Visitantes internacionales y predicción}}
+\fancyhead[R]{\small\color{Navy}Informe para público general}
+\fancyfoot[C]{\small Página \thepage\ de \pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.35pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\titleformat{\section}
+  {\LARGE\bfseries\color{Navy}}
+  {}{0pt}{}
+  [\vspace{2pt}\color{Line}\titlerule]
+\titleformat{\subsection}
+  {\large\bfseries\color{Blue}}
+  {}{0pt}{}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{5pt}
+\setlist[itemize]{leftmargin=1.5em,itemsep=2pt,topsep=3pt}
+\setlist[enumerate]{leftmargin=1.7em,itemsep=2pt,topsep=3pt}
+\graphicspath{{figuras/}}
+
+\newcommand{\callout}[2]{%
+  \begin{center}
+  \fcolorbox{#1}{Soft}{%
+    \begin{minipage}{0.92\textwidth}
+    \vspace{4pt}#2\vspace{4pt}
+    \end{minipage}}
+  \end{center}
+}
+
+\newcommand{\plainterm}[2]{%
+  \textbf{\color{Blue}#1:} #2
+}
+
+\begin{document}
+
+% ---------------------------------------------------------------------------
+% PÁGINA 1
+% ---------------------------------------------------------------------------
+\begin{titlepage}
+\pagecolor{Navy}
+\color{white}
+\vspace*{0.8cm}
+
+{\Large\bfseries UNIVERSIDAD GALILEO\par}
+\vspace{0.25cm}
+{\large Facultad de Ingeniería\par}
+{\large Departamento de Ciencias de la Computación\par}
+
+\vfill
+
+{\color{Teal}\rule{\textwidth}{3pt}}\par
+\vspace{0.55cm}
+{\Huge\bfseries Laboratorio 2\par}
+\vspace{0.2cm}
+{\LARGE Predicción de visitantes internacionales\par}
+\vspace{0.45cm}
+{\Large Informe explicado para público general\par}
+\vspace{0.55cm}
+{\color{Teal}\rule{\textwidth}{3pt}}\par
+
+\vfill
+
+\begin{tabular}{@{}>{\bfseries}p{3.7cm}p{11cm}@{}}
+Curso: & CC3084 - Data Science, sección 11\\[4pt]
+Docente: & García Pérez, Lynette\\[4pt]
+Integrantes: &
+Jorge Gabriel Palacios Sales\\
+& Pablo Daniel Barillas Moreno\\
+& Roberto Emiliano Otoniel Camposeco Torres\\[4pt]
+Datos: & Ingresos mensuales de visitantes a Guatemala,
+enero de 2009 a junio de 2026\\
+\end{tabular}
+
+\vfill
+
+{\large Guatemala, julio de 2026\par}
+\end{titlepage}
+\nopagecolor
+\color{Ink}
+\pagenumbering{arabic}
+\setcounter{page}{2}
+
+% ---------------------------------------------------------------------------
+% PÁGINA 2
+% ---------------------------------------------------------------------------
+\section{¿Qué se estudió y por qué es útil?}
+
+El objetivo fue aprender del comportamiento histórico de los visitantes
+internacionales para estimar cómo podrían evolucionar en los meses
+siguientes. Un pronóstico de este tipo puede apoyar la planificación de
+personal, atención en fronteras, transporte, promoción turística y capacidad
+de servicio.
+
+La base contiene \textbf{161,036 registros} y cubre \textbf{210 meses
+consecutivos}, desde enero de 2009 hasta junio de 2026. No se encontraron
+meses faltantes, cantidades negativas ni vacíos en la medida principal.
+
+\subsection{¿A quiénes se contó?}
+
+Se sumaron dos tipos de visitantes:
+
+\begin{itemize}
+  \item \textbf{Turistas}: permanecen al menos una noche.
+  \item \textbf{Excursionistas}: visitan el país y regresan el mismo día.
+\end{itemize}
+
+No se agregó la categoría ``Viajero'', porque incluye cruces que no siempre
+son visitas turísticas y su forma de registro cambió desde 2023.
+
+\subsection{Las dos series pronosticadas}
+
+\begin{tabularx}{\textwidth}{>{\bfseries\color{Blue}}p{3.3cm}X}
+\toprule
+Total nacional & Todos los turistas y excursionistas registrados durante
+cada mes en las fronteras del país.\\
+\addlinespace
+01 La Aurora & Visitantes que ingresaron por el principal aeropuerto
+internacional.\\
+\bottomrule
+\end{tabularx}
+
+\callout{Teal}{%
+\textbf{Idea importante.} No se intentó adivinar el futuro con información
+que todavía no existía. Todos los modelos aprendieron únicamente de los
+meses anteriores a cada período evaluado.
+}
+
+\subsection{Un acontecimiento que cambió la historia}
+
+La pandemia provocó una caída sin precedentes durante 2020 y 2021. Por eso,
+pronosticar esta información es especialmente difícil: los años anteriores no
+contenían un cierre comparable que pudiera servir como ejemplo.
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 3
+% ---------------------------------------------------------------------------
+\section{¿Cómo se hizo una comparación justa?}
+
+Los 210 meses se mantuvieron en orden. No se mezclaron fechas antiguas con
+fechas futuras.
+
+\begin{itemize}
+  \item \textbf{Entrenamiento}: 147 meses, de enero de 2009 a marzo de 2021.
+  \item \textbf{Prueba final}: 63 meses, de abril de 2021 a junio de 2026.
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.92\textwidth]{particion_cronologica.png}
+\end{center}
+
+Dentro del entrenamiento se apartó un período más pequeño para decidir qué
+configuración funcionaba mejor. Esto es parecido a estudiar con varios
+ejercicios antes del examen final: se pueden corregir decisiones durante la
+práctica, pero las respuestas del examen permanecen ocultas.
+
+\subsection{¿Qué significa una ventana de tiempo?}
+
+El modelo observa una cantidad fija de meses anteriores antes de estimar el
+siguiente. Se probaron dos opciones:
+
+\begin{itemize}
+  \item 12 meses: un año completo de historia.
+  \item 24 meses: dos años completos de historia.
+\end{itemize}
+
+\subsection{¿Cómo se midió el error?}
+
+Se utilizaron tres indicadores, pero el principal fue RMSE.
+
+\begin{itemize}
+  \item \plainterm{MAE}{error promedio expresado en visitantes.}
+  \item \plainterm{RMSE}{da más importancia a los errores grandes.}
+  \item \plainterm{sMAPE}{expresa el error como porcentaje y permite comparar
+  series de distinto tamaño.}
+\end{itemize}
+
+\callout{Gold}{%
+\textbf{Cómo leer los resultados.} En todos estos indicadores,
+\textbf{un número menor representa una predicción más cercana a la realidad}.
+}
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 4
+% ---------------------------------------------------------------------------
+\section{¿Qué es una LSTM?}
+
+Una LSTM es un método que aprende de secuencias ordenadas. Puede imaginarse
+como una memoria con tres decisiones:
+
+\begin{enumerate}
+  \item qué información antigua conviene conservar;
+  \item qué información nueva debe incorporarse;
+  \item qué parte de la memoria debe utilizarse para producir la siguiente
+  estimación.
+\end{enumerate}
+
+No se le indicó manualmente cuánto debía subir o bajar cada mes. El método
+ajustó internamente sus parámetros observando ejemplos históricos.
+
+\subsection{Se probaron varias versiones}
+
+Para evitar depender de una única configuración, se evaluaron cuatro modelos
+por cada serie:
+
+\begin{tabularx}{\textwidth}{lXcc}
+\toprule
+\textbf{Modelo} & \textbf{Estructura} & \textbf{Meses observados} &
+\textbf{Tamaño interno}\\
+\midrule
+LSTM-1A & Una capa de memoria & 12 & 8\\
+LSTM-1B & Una capa de memoria & 24 & 16\\
+LSTM-2A & Dos capas de memoria & 12 & 12 y 6\\
+LSTM-2B & Dos capas de memoria & 24 & 16 y 8\\
+\bottomrule
+\end{tabularx}
+
+\begin{center}
+\includegraphics[width=0.93\textwidth]{comparacion_configuraciones.png}
+\end{center}
+
+\subsection{Ganadores antes del examen final}
+
+\begin{itemize}
+  \item Para el \textbf{total nacional} ganó LSTM-1A.
+  \item Para \textbf{La Aurora} ganó LSTM-2A.
+\end{itemize}
+
+La red más grande no ganó siempre. Esto confirma que un modelo más complejo
+no es necesariamente más preciso. Cuando los datos son limitados, una
+estructura sencilla puede generalizar mejor.
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 5
+% ---------------------------------------------------------------------------
+\section{Resultado principal: comparación final}
+
+Los ganadores se entrenaron nuevamente con los 147 meses completos y
+pronosticaron, uno por uno, los 63 meses reservados. Después se compararon
+contra los mejores métodos del Laboratorio 1.
+
+\begin{center}
+\includegraphics[width=0.88\textwidth]{comparacion_lab1.png}
+\end{center}
+
+\begin{tabularx}{\textwidth}{Xrrr}
+\toprule
+\textbf{Serie} & \textbf{RMSE LSTM} & \textbf{RMSE anterior} &
+\textbf{Mejora}\\
+\midrule
+01 La Aurora & 31,020 & 42,053 & \textbf{26.24\%}\\
+Total nacional & 137,339 & 139,549 & \textbf{1.58\%}\\
+\bottomrule
+\end{tabularx}
+
+\subsection{Interpretación sencilla}
+
+\textbf{La Aurora.} La LSTM produjo una mejora importante. Su error grande
+típico, medido por RMSE, disminuyó aproximadamente una cuarta parte frente al
+método anterior llamado SES.
+
+\textbf{Total nacional.} La LSTM también ganó, pero por una diferencia
+pequeña. Superó a Prophet en 1.58\%. Esto significa que ambos métodos tuvieron
+un desempeño parecido y que no sería prudente descartar Prophet.
+
+\callout{Teal}{%
+\textbf{Conclusión equilibrada.} Las LSTM fueron mejores en estas dos
+comparaciones concretas. Esto no significa que siempre sean superiores para
+cualquier frontera, país o período.
+}
+
+La diferencia entre ambas series tiene sentido. La Aurora representa un punto
+de entrada específico, mientras el total combina pasos aéreos, terrestres y
+marítimos con comportamientos distintos.
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 6
+% ---------------------------------------------------------------------------
+\section{¿Qué muestran los pronósticos?}
+
+\begin{center}
+\includegraphics[width=0.98\textwidth]{pronostico_test.png}
+\end{center}
+
+La línea observada representa lo que realmente ocurrió. La línea punteada
+representa lo estimado por la LSTM.
+
+\subsection{Total nacional}
+
+El modelo identifica una recuperación gradual, pero después se estabiliza
+demasiado. No reproduce todos los picos y caídas mensuales observados. Esto
+explica por qué su mejora frente a Prophet fue pequeña y su error porcentual
+continuó siendo alto.
+
+\subsection{La Aurora}
+
+El pronóstico se acerca mejor al nivel general posterior a la reapertura. No
+acierta cada pico mensual, pero mantiene una trayectoria más próxima a los
+datos reales. Por eso obtiene una mejora más clara frente a SES.
+
+\subsection{¿Por qué no se acierta cada mes?}
+
+\begin{itemize}
+  \item El cierre de 2020 fue extraordinario y no tenía un antecedente
+  comparable.
+  \item No se incluyeron datos sobre vuelos, restricciones, feriados,
+  economía o tipo de cambio.
+  \item El pronóstico cubre más de cinco años, por lo que pequeños errores se
+  acumulan.
+\end{itemize}
+
+\callout{Gold}{%
+\textbf{Uso responsable.} El pronóstico sirve como apoyo para planificar,
+pero no debe interpretarse como una cifra exacta ni sustituir la revisión de
+información reciente.
+}
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 7
+% ---------------------------------------------------------------------------
+\section{catch22: una huella digital para cada serie}
+
+Además de pronosticar, se buscó entender qué series se comportan de manera
+parecida. Para ello se utilizó \textit{catch22}.
+
+Puede imaginarse como una \textbf{huella digital formada por 22 números}.
+Cada número describe un aspecto distinto:
+
+\begin{itemize}
+  \item repetición y dependencia entre meses;
+  \item presencia de ciclos;
+  \item meses excepcionalmente altos o bajos;
+  \item cambios rápidos o lentos;
+  \item estabilidad y duración de las fluctuaciones.
+\end{itemize}
+
+Se construyeron huellas para siete series:
+
+\begin{itemize}
+  \item total nacional;
+  \item América Del Centro, América Del Norte y Europa;
+  \item La Aurora, Valle Nuevo y San Cristóbal.
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.98\textwidth]{catch22_heatmap.png}
+\end{center}
+
+En el mapa, rojo y azul no significan ``bueno'' o ``malo''. Solamente indican
+que una característica está por encima o por debajo del promedio de las siete
+series.
+
+\callout{Teal}{%
+\textbf{¿Por qué es útil?} Dos series pueden tener cantidades muy diferentes
+y, aun así, compartir una forma temporal parecida. catch22 permite estudiar
+esa forma sin limitarse al tamaño de los números.
+}
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 8
+% ---------------------------------------------------------------------------
+\section{¿Qué series se parecen?}
+
+El análisis redujo las 22 características a un mapa de dos dimensiones. Los
+puntos cercanos representan comportamientos más parecidos.
+
+\begin{center}
+\includegraphics[width=0.73\textwidth]{catch22_pca.png}
+\end{center}
+
+\subsection{Resultados más importantes}
+
+\begin{itemize}
+  \item \textbf{Par más parecido}: total nacional y América Del Centro.
+  \item \textbf{Serie más diferente}: 01 La Aurora.
+  \item \textbf{Grupo 1}: total, América Del Centro, Valle Nuevo y San
+  Cristóbal.
+  \item \textbf{Grupo 2}: América Del Norte y Europa.
+  \item \textbf{Grupo 3}: La Aurora por sí sola.
+\end{itemize}
+
+La cercanía del total con América Del Centro concuerda con la importancia de
+los mercados centroamericanos y las fronteras terrestres. La Aurora se
+separa porque depende de vuelos y tuvo una caída y una recuperación
+particulares.
+
+\subsection{Un descubrimiento importante}
+
+Pertenecer a la misma categoría no garantiza comportarse igual. La Aurora,
+Valle Nuevo y San Cristóbal son fronteras, pero La Aurora no se agrupa con las
+otras dos. La forma en que cambia una serie a lo largo del tiempo puede ser
+más informativa que su etiqueta administrativa.
+
+\callout{Gold}{%
+El análisis utiliza únicamente siete series. Los grupos son una guía
+exploratoria y no una clasificación permanente de todas las fronteras o
+mercados.
+}
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 9
+% ---------------------------------------------------------------------------
+\section{¿Agregar catch22 mejoró la predicción?}
+
+Se construyó un último modelo para La Aurora. Además de observar los 12 meses
+recientes, recibió la huella catch22 calculada con los 36 meses anteriores.
+
+\begin{center}
+\includegraphics[width=0.93\textwidth]{lstm_catch22.png}
+\end{center}
+
+\begin{tabularx}{\textwidth}{Xrr}
+\toprule
+\textbf{Modelo} & \textbf{MAE} & \textbf{RMSE}\\
+\midrule
+LSTM base & 24,473 & \textbf{31,020}\\
+SES & 36,822 & 42,053\\
+LSTM con catch22 & 34,356 & 42,907\\
+\bottomrule
+\end{tabularx}
+
+\subsection{El resultado fue negativo, pero útil}
+
+La versión con catch22 \textbf{no mejoró} la predicción. Su RMSE fue 42,907,
+frente a 31,020 de la LSTM base. Agregar más información hizo el modelo más
+complejo, pero no más preciso.
+
+Esto puede ocurrir porque:
+
+\begin{itemize}
+  \item había pocos ejemplos para aprender 23 entradas al mismo tiempo;
+  \item varias características contenían información repetida;
+  \item una huella que sirve para comparar series completas no
+  necesariamente ayuda a pronosticar cada mes.
+\end{itemize}
+
+\callout{Teal}{%
+\textbf{Aprendizaje obtenido.} Un resultado que no mejora también es
+importante. Evita adoptar una solución más complicada cuando la versión
+sencilla funciona mejor.
+}
+
+\newpage
+
+% ---------------------------------------------------------------------------
+% PÁGINA 10
+% ---------------------------------------------------------------------------
+\section{Conclusiones y recomendaciones}
+
+\subsection{Conclusiones principales}
+
+\begin{enumerate}
+  \item Se analizaron 210 meses completos y dos series de visitantes.
+  \item Se probaron cuatro versiones LSTM por cada serie.
+  \item La LSTM redujo el error de La Aurora en 26.24\% frente a SES.
+  \item En el total nacional la mejora frente a Prophet fue de 1.58\%.
+  \item El total y América Del Centro fueron las series más parecidas.
+  \item La Aurora fue la serie con comportamiento más particular.
+  \item Agregar catch22 a la LSTM no mejoró el pronóstico.
+\end{enumerate}
+
+\subsection{Recomendaciones para uso práctico}
+
+\begin{itemize}
+  \item Actualizar los modelos cuando se incorporen meses nuevos.
+  \item Mantener varios métodos disponibles; no imponer un único algoritmo.
+  \item Separar pronósticos por frontera o región cuando se planifiquen
+  recursos locales.
+  \item Incorporar vuelos, feriados, restricciones y variables económicas.
+  \item Presentar intervalos o escenarios, no solamente una cifra puntual.
+  \item Documentar cualquier cambio en la forma de registrar visitantes.
+\end{itemize}
+
+\subsection{Glosario mínimo}
+
+\begin{tabularx}{\textwidth}{>{\bfseries\color{Blue}}p{2.8cm}X}
+LSTM & Método que aprende patrones en datos ordenados y conserva memoria de
+meses anteriores.\\
+Pronóstico & Estimación de un valor que todavía no se conoce.\\
+RMSE & Medida de error que penaliza más las equivocaciones grandes.\\
+catch22 & Conjunto de 22 números que resume la forma temporal de una serie.\\
+PCA & Mapa simplificado para observar semejanzas entre muchas
+características.\\
+Clustering & Procedimiento que reúne elementos con comportamientos
+parecidos.\\
+\end{tabularx}
+
+\callout{Teal}{%
+\textbf{Mensaje final.} Los modelos pueden apoyar decisiones, pero deben
+combinarse con conocimiento institucional y datos recientes. La LSTM base fue
+la opción más efectiva para las dos series evaluadas.
+}
+
+\vfill
+{\small\color{Navy}
+\textbf{Nota:} resultados académicos; no constituyen cifras oficiales ni un
+sistema institucional de pronóstico.}
+
+\end{document}
