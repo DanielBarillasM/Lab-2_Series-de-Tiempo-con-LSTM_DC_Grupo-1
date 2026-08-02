@@ -26,7 +26,7 @@ exploración de similitud utilizando **catch22**.
 | Docente | García Pérez, Lynette |
 | Actividad | Laboratorio 2 - Deep Learning para Series de Tiempo |
 | Período analizado | Enero de 2009 a junio de 2026 |
-| Fecha de entrega | Julio de 2026 |
+| Fecha de entrega | 2 de agosto de 2026 |
 
 ### Integrantes
 
@@ -100,11 +100,16 @@ para reconstruir las series mensuales.
 1. **Total nacional:** suma mensual de visitantes internacionales.
 2. **Frontera 01 La Aurora:** ingresos mensuales registrados por esa vía.
 
-La separación de los datos conserva el orden temporal:
+La separación de los datos conserva el orden temporal y es la misma del Laboratorio 1
+(147 meses de entrenamiento y 63 de prueba):
 
-- entrenamiento: enero de 2009 a junio de 2023;
-- validación: julio de 2023 a junio de 2024;
-- prueba: julio de 2024 a junio de 2026.
+- entrenamiento: enero de 2009 a marzo de 2021 (147 meses), que a su vez se divide en
+  - ajuste interno: enero de 2009 a septiembre de 2018 (117 meses),
+  - validación: octubre de 2018 a marzo de 2021 (30 meses);
+- prueba: abril de 2021 a junio de 2026 (63 meses).
+
+La validación interna se usa solo para escoger hiperparámetros. El conjunto de prueba se
+evalúa una única vez, al final.
 
 ![Partición cronológica](Lab02/Versión-Final/Informe/figuras/particion_cronologica.png)
 
