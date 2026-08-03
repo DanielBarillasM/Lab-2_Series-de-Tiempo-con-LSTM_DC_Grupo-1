@@ -1,4 +1,4 @@
-% Compilar con: pdflatex Informe_Divulgativo_Laboratorio_2_10_Paginas.tex
+% Compilar con: pdflatex Informe_Divulgativo_Laboratorio_2.tex
 % Documento diseñado para producir exactamente 10 páginas.
 \documentclass[10pt,letterpaper]{article}
 
@@ -83,7 +83,7 @@
 \color{white}
 \vspace*{0.8cm}
 
-{\Large\bfseries UNIVERSIDAD GALILEO\par}
+{\Large\bfseries UNIVERSIDAD DEL VALLE DE GUATEMALA\par}
 \vspace{0.25cm}
 {\large Facultad de Ingeniería\par}
 {\large Departamento de Ciencias de la Computación\par}
@@ -148,9 +148,10 @@ análisis:
   \item \textbf{Excursionistas}: entran y salen el mismo día.
 \end{itemize}
 
-Se dejó fuera la categoría ``Viajero'' porque agrupa cruces que no siempre son
-turísticos, y porque la forma de registrarla cambió a partir de 2023, lo que
-la haría poco comparable con años anteriores.
+Las demás categorías se dejaron fuera para conservar exactamente la misma
+definición utilizada en el Laboratorio 1. De esta manera, la comparación entre
+los modelos tradicionales y las LSTM se realiza sobre las mismas personas y
+los mismos meses.
 
 \subsection{Las dos series que se pronosticaron}
 
@@ -269,6 +270,10 @@ LSTM-2A & Dos capas de memoria & 12 & 12 y 6\\
 LSTM-2B & Dos capas de memoria & 24 & 16 y 8\\
 \bottomrule
 \end{tabularx}
+
+Además, se documentaron dos diseños de mayor tamaño que se probaron en ambas
+series y luego se descartaron por su menor estabilidad. Por ello, la elección
+final no se basó solamente en la cifra más baja de una prueba aislada.
 
 \begin{center}
 \includegraphics[width=0.93\textwidth]{comparacion_configuraciones.png}
@@ -529,7 +534,8 @@ complicada cuando la alternativa sencilla ya rinde mejor.
 
 \begin{enumerate}
   \item Se trabajó con 210 meses completos de dos series de visitantes.
-  \item Se compararon cuatro variantes de LSTM por cada serie.
+  \item Se compararon cuatro variantes finales de LSTM por cada serie y se
+  documentaron dos diseños adicionales que fueron descartados.
   \item La LSTM redujo el error en La Aurora en 26.24\% frente a SES.
   \item En el total nacional, la mejora frente a Prophet fue de 1.58\%.
   \item El total nacional y América Del Centro resultaron ser las series más
@@ -571,17 +577,5 @@ características a la vez.\\
 Clustering & Procedimiento que agrupa elementos con comportamientos
 parecidos.\\
 \end{tabularx}
-
-\callout{Teal}{%
-\textbf{Mensaje final.} Estos modelos son una herramienta de apoyo, no un
-reemplazo del criterio institucional ni de los datos más recientes. Para las
-dos series analizadas, la LSTM sin características adicionales fue la opción
-más efectiva.
-}
-
-\vfill
-{\small\color{Navy}
-\textbf{Nota:} resultados académicos; no constituyen cifras oficiales ni un
-sistema institucional de pronóstico.}
 
 \end{document}

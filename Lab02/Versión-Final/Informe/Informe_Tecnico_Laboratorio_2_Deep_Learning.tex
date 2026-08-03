@@ -51,7 +51,7 @@
 \fancyhf{}
 \fancyhead[L]{\small\color{Navy}\textbf{CC3084 - Data Science}}
 \fancyhead[R]{\small\color{Navy}Laboratorio 2}
-\fancyfoot[L]{\small Universidad Galileo}
+\fancyfoot[L]{\small Universidad del Valle de Guatemala}
 \fancyfoot[R]{\small Página \thepage\ de \pageref{LastPage}}
 \renewcommand{\headrulewidth}{0.4pt}
 \renewcommand{\footrulewidth}{0.2pt}
@@ -101,12 +101,13 @@
 
 \begin{document}
 
+\hypersetup{pageanchor=false}
 \begin{titlepage}
 \pagecolor{Navy}
 \color{white}
 \vspace*{1.0cm}
 
-{\Large\bfseries UNIVERSIDAD GALILEO\par}
+{\Large\bfseries UNIVERSIDAD DEL VALLE DE GUATEMALA\par}
 \vspace{0.3cm}
 {\large Facultad de Ingeniería\par}
 {\large Departamento de Ciencias de la Computación\par}
@@ -142,6 +143,7 @@ Período: & Enero de 2009 a junio de 2026\\
 \end{titlepage}
 \nopagecolor
 \color{Ink}
+\hypersetup{pageanchor=true}
 
 \pagenumbering{roman}
 \tableofcontents
@@ -151,7 +153,7 @@ Período: & Enero de 2009 a junio de 2026\\
 \newpage
 \pagenumbering{arabic}
 
-\section{Resumen ejecutivo}
+\section{Resumen}
 
 Este laboratorio estudia si las redes Long Short-Term Memory (LSTM) pueden
 pronosticar dos series mensuales de visitantes internacionales y si su
@@ -185,6 +187,8 @@ Laboratorio 1 en ambas series. La mejora fue pequeña en el total nacional,
 pero sustancial en La Aurora. El uso adicional de \textit{catch22} dentro de
 la red no produjo una mejora predictiva.
 }
+
+\vspace{15cm}
 
 \section{Objetivos}
 
@@ -250,10 +254,10 @@ Y_t =
 \text{Viajero}_{i,t}.
 \]
 
-La categoría \textit{Viajero} queda excluida porque no representa
-necesariamente una visita turística y presenta un quiebre metodológico entre
-2022 y 2023. Los cruceristas tampoco mantienen cobertura homogénea durante
-todo el período.
+Las demás categorías se excluyen para reproducir exactamente la definición de
+serie empleada en el Laboratorio 1. Esta decisión mantiene constante el
+universo de personas, la cobertura temporal y la base de comparación con los
+modelos tradicionales.
 
 \subsection{Series seleccionadas}
 
@@ -312,6 +316,8 @@ interno de entrenamiento durante el tuneo y con los 147 meses completos
 durante el reentrenamiento final. El test no se utiliza para seleccionar
 arquitecturas, épocas o parámetros.
 
+\vspace{5cm}
+
 \subsection{Ventanas supervisadas}
 
 Para una ventana de longitud \(w\), la entrada y el objetivo son:
@@ -359,6 +365,8 @@ Adam, semillas deterministas y control de gradiente. Además, se comprobó la
 derivada mediante diferencias finitas, con error relativo inferior a
 \(10^{-7}\).
 
+\vspace{5cm}
+
 \section{Tuneo de hiperparámetros}
 
 \subsection{Espacio de búsqueda}
@@ -366,6 +374,7 @@ derivada mediante diferencias finitas, con error relativo inferior a
 \begin{table}[H]
 \centering
 \caption{Configuraciones LSTM evaluadas en cada serie}
+\label{tab:configuraciones}
 \begin{tabular}{llccccc}
 \toprule
 \textbf{Modelo} & \textbf{Capas} & \textbf{Ventana} &
@@ -456,7 +465,7 @@ total fue 3.0 veces.
 
 \subsection{Configuraciones descartadas}
 
-La rejilla de la Tabla~5 es reducida a propósito. Se llegó a ese tamaño
+La rejilla de la Tabla~\ref{tab:configuraciones} es reducida a propósito. Se llegó a ese tamaño
 después de evaluar redes más grandes y ventanas más largas, cuyos resultados
 se documentan aquí porque explican la decisión mejor que un párrafo aislado.
 
@@ -726,6 +735,8 @@ como relaciones universales.
 correlaciones y clustering sirven para explorar esta colección concreta, pero
 no constituyen una clasificación definitiva de toda la actividad migratoria.}
 
+\vspace{8cm}
+
 \section{Interpretación de los incisos 2.7 a 2.13}
 
 \subsection{Series más similares}
@@ -844,8 +855,9 @@ combinar ambas representaciones.
 \section{Conclusiones}
 
 \begin{enumerate}
-  \item Se ajustaron ocho candidatos LSTM, cuatro por serie, con tuneo
-  cronológico y sin utilizar el test.
+  \item Se ajustaron ocho candidatos de la rejilla final, cuatro por serie,
+  y se documentaron dos diseños adicionales evaluados en ambas series. El
+  tuneo fue cronológico y no utilizó el conjunto de prueba.
   \item LSTM-2A fue la mejor configuración para La Aurora y LSTM-1A para el
   total nacional.
   \item En prueba, las LSTM superaron a los ganadores del Laboratorio 1. La
@@ -858,6 +870,8 @@ combinar ambas representaciones.
   \item Añadir \textit{catch22} directamente a la entrada LSTM no mejoró la
   predicción. La LSTM base fue más simple y precisa.
 \end{enumerate}
+
+\vspace{5cm}
 
 \section{Limitaciones y recomendaciones}
 
@@ -902,6 +916,8 @@ Código reproducible y ejecutado & Cumplido\\
 \bottomrule
 \end{longtable}
 
+\vspace{8cm}
+
 \section*{Referencias}
 \addcontentsline{toc}{section}{Referencias}
 
@@ -922,7 +938,7 @@ Código reproducible y ejecutado & Cumplido\\
   \textit{pycatch22}.
   \href{https://github.com/DynamicsAndNeuralSystems/pycatch22}
   {Repositorio oficial de pycatch22}.
-  \item Universidad Galileo (2026).
+  \item Universidad del Valle de Guatemala (2026).
   \textit{Laboratorio 2. Deep Learning. Series de Tiempo}.
 \end{enumerate}
 
