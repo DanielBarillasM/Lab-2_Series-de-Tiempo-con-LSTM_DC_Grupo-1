@@ -476,10 +476,11 @@ definitiva de todas las fronteras o mercados del país.
 % ---------------------------------------------------------------------------
 % PÁGINA 9
 % ---------------------------------------------------------------------------
-\section{¿Agregar catch22 mejoró la predicción?}
+\section{¿Ayudó agregar catch22 a mejorar el pronóstico?}
 
-Se construyó un último modelo para La Aurora. Además de observar los 12 meses
-recientes, recibió la huella catch22 calculada con los 36 meses anteriores.
+Se construyó un modelo adicional, esta vez para La Aurora, que además de
+observar los últimos 12 meses también recibía la huella catch22 calculada con
+los 36 meses previos.
 
 \begin{center}
 \includegraphics[width=0.93\textwidth]{lstm_catch22.png}
@@ -495,25 +496,26 @@ LSTM con catch22 & 34,356 & 42,907\\
 \bottomrule
 \end{tabularx}
 
-\subsection{El resultado fue negativo, pero útil}
+\subsection{El resultado no fue el esperado, pero sí fue informativo}
 
-La versión con catch22 \textbf{no mejoró} la predicción. Su RMSE fue 42,907,
-frente a 31,020 de la LSTM base. Agregar más información hizo el modelo más
-complejo, pero no más preciso.
+Agregar catch22 \textbf{no mejoró} el pronóstico: su RMSE (42,907) quedó por
+encima del de la LSTM base (31,020). En otras palabras, la versión más
+compleja no resultó más precisa.
 
-Esto puede ocurrir porque:
+Algunas razones probables:
 
 \begin{itemize}
-  \item había pocos ejemplos para aprender 23 entradas al mismo tiempo;
-  \item varias características contenían información repetida;
-  \item una huella que sirve para comparar series completas no
-  necesariamente ayuda a pronosticar cada mes.
+  \item había pocos ejemplos disponibles para que el modelo aprendiera a usar
+  23 entradas simultáneas en lugar de solo una;
+  \item varias de las 22 características resultaron redundantes entre sí;
+  \item una huella pensada para \emph{comparar} series completas no
+  necesariamente aporta valor para \emph{pronosticar} mes a mes.
 \end{itemize}
 
 \callout{Teal}{%
-\textbf{Aprendizaje obtenido.} Un resultado que no mejora también es
-importante. Evita adoptar una solución más complicada cuando la versión
-sencilla funciona mejor.
+\textbf{Por qué este resultado importa igual.} Confirmar que algo no funciona
+también es un aprendizaje válido: evita invertir esfuerzo en una solución más
+complicada cuando la alternativa sencilla ya rinde mejor.
 }
 
 \newpage
@@ -523,48 +525,58 @@ sencilla funciona mejor.
 % ---------------------------------------------------------------------------
 \section{Conclusiones y recomendaciones}
 
-\subsection{Conclusiones principales}
+\subsection{Lo que se puede afirmar con los datos disponibles}
 
 \begin{enumerate}
-  \item Se analizaron 210 meses completos y dos series de visitantes.
-  \item Se probaron cuatro versiones LSTM por cada serie.
-  \item La LSTM redujo el error de La Aurora en 26.24\% frente a SES.
-  \item En el total nacional la mejora frente a Prophet fue de 1.58\%.
-  \item El total y América Del Centro fueron las series más parecidas.
-  \item La Aurora fue la serie con comportamiento más particular.
-  \item Agregar catch22 a la LSTM no mejoró el pronóstico.
+  \item Se trabajó con 210 meses completos de dos series de visitantes.
+  \item Se compararon cuatro variantes de LSTM por cada serie.
+  \item La LSTM redujo el error en La Aurora en 26.24\% frente a SES.
+  \item En el total nacional, la mejora frente a Prophet fue de 1.58\%.
+  \item El total nacional y América Del Centro resultaron ser las series más
+  parecidas entre sí.
+  \item La Aurora fue, de las siete series analizadas, la de comportamiento
+  más particular.
+  \item Sumar catch22 a la LSTM no mejoró la calidad del pronóstico.
 \end{enumerate}
 
-\subsection{Recomendaciones para uso práctico}
+\subsection{Recomendaciones para usar esto en la práctica}
 
 \begin{itemize}
-  \item Actualizar los modelos cuando se incorporen meses nuevos.
-  \item Mantener varios métodos disponibles; no imponer un único algoritmo.
-  \item Separar pronósticos por frontera o región cuando se planifiquen
-  recursos locales.
-  \item Incorporar vuelos, feriados, restricciones y variables económicas.
-  \item Presentar intervalos o escenarios, no solamente una cifra puntual.
-  \item Documentar cualquier cambio en la forma de registrar visitantes.
+  \item Reentrenar los modelos cada vez que se incorporen meses nuevos a la
+  base.
+  \item Conservar más de un método disponible; no depender de un único
+  algoritmo.
+  \item Separar los pronósticos por frontera o región cuando se necesite
+  planificar recursos a nivel local.
+  \item Explorar la incorporación de vuelos, feriados, restricciones y
+  variables económicas como información adicional.
+  \item Comunicar los resultados como rangos o escenarios, no como una única
+  cifra exacta.
+  \item Dejar constancia de cualquier cambio futuro en la forma de registrar
+  visitantes, para no romper la comparabilidad histórica.
 \end{itemize}
 
 \subsection{Glosario mínimo}
 
 \begin{tabularx}{\textwidth}{>{\bfseries\color{Blue}}p{2.8cm}X}
-LSTM & Método que aprende patrones en datos ordenados y conserva memoria de
-meses anteriores.\\
+LSTM & Técnica que aprende patrones en datos ordenados en el tiempo y
+conserva memoria de meses anteriores.\\
 Pronóstico & Estimación de un valor que todavía no se conoce.\\
-RMSE & Medida de error que penaliza más las equivocaciones grandes.\\
-catch22 & Conjunto de 22 números que resume la forma temporal de una serie.\\
-PCA & Mapa simplificado para observar semejanzas entre muchas
-características.\\
-Clustering & Procedimiento que reúne elementos con comportamientos
+RMSE & Medida de error que penaliza con más fuerza las equivocaciones
+grandes.\\
+catch22 & Conjunto de 22 números que resume la forma temporal de una
+serie.\\
+PCA & Mapa simplificado que permite observar semejanzas entre muchas
+características a la vez.\\
+Clustering & Procedimiento que agrupa elementos con comportamientos
 parecidos.\\
 \end{tabularx}
 
 \callout{Teal}{%
-\textbf{Mensaje final.} Los modelos pueden apoyar decisiones, pero deben
-combinarse con conocimiento institucional y datos recientes. La LSTM base fue
-la opción más efectiva para las dos series evaluadas.
+\textbf{Mensaje final.} Estos modelos son una herramienta de apoyo, no un
+reemplazo del criterio institucional ni de los datos más recientes. Para las
+dos series analizadas, la LSTM sin características adicionales fue la opción
+más efectiva.
 }
 
 \vfill
