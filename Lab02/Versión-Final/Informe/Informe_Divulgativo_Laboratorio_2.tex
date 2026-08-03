@@ -291,11 +291,12 @@ sencilla puede generalizar mejor que una elaborada.
 % ---------------------------------------------------------------------------
 % PÁGINA 5
 % ---------------------------------------------------------------------------
-\section{Resultado principal: comparación final}
+\section{El resultado que más importa: la comparación final}
 
-Los ganadores se entrenaron nuevamente con los 147 meses completos y
-pronosticaron, uno por uno, los 63 meses reservados. Después se compararon
-contra los mejores métodos del Laboratorio 1.
+Los dos modelos ganadores se volvieron a entrenar, esta vez con los 147 meses
+completos, y produjeron un pronóstico mes a mes para los 63 meses de prueba
+que nunca habían visto. Ese pronóstico se comparó contra los mejores modelos
+tradicionales obtenidos en el Laboratorio 1.
 
 \begin{center}
 \includegraphics[width=0.88\textwidth]{comparacion_lab1.png}
@@ -311,68 +312,70 @@ Total nacional & 137,339 & 139,549 & \textbf{1.58\%}\\
 \bottomrule
 \end{tabularx}
 
-\subsection{Interpretación sencilla}
+\subsection{Cómo interpretar esta tabla}
 
-\textbf{La Aurora.} La LSTM produjo una mejora importante. Su error grande
-típico, medido por RMSE, disminuyó aproximadamente una cuarta parte frente al
-método anterior llamado SES.
+\textbf{La Aurora.} Aquí la LSTM sí marcó una diferencia clara: su error
+grande típico (RMSE) bajó cerca de una cuarta parte frente al método anterior,
+llamado SES.
 
-\textbf{Total nacional.} La LSTM también ganó, pero por una diferencia
-pequeña. Superó a Prophet en 1.58\%. Esto significa que ambos métodos tuvieron
-un desempeño parecido y que no sería prudente descartar Prophet.
+\textbf{Total nacional.} La LSTM también quedó por encima de Prophet, pero por
+un margen pequeño, de apenas 1.58\%. En la práctica, esto quiere decir que
+ambos métodos tuvieron un desempeño bastante parejo, y que descartar Prophet
+por completo no estaría justificado.
 
 \callout{Teal}{%
-\textbf{Conclusión equilibrada.} Las LSTM fueron mejores en estas dos
-comparaciones concretas. Esto no significa que siempre sean superiores para
-cualquier frontera, país o período.
+\textbf{Una conclusión con matices.} La LSTM ganó en estas dos comparaciones
+puntuales, pero eso no debe leerse como que siempre será la mejor opción para
+cualquier otra frontera, país o período de tiempo.
 }
 
-La diferencia entre ambas series tiene sentido. La Aurora representa un punto
-de entrada específico, mientras el total combina pasos aéreos, terrestres y
-marítimos con comportamientos distintos.
+Que ambas series se comporten distinto tiene sentido: La Aurora es un único
+punto de entrada, mientras que el total nacional mezcla pasos aéreos,
+terrestres y marítimos, cada uno con su propia dinámica.
 
 \newpage
 
 % ---------------------------------------------------------------------------
 % PÁGINA 6
 % ---------------------------------------------------------------------------
-\section{¿Qué muestran los pronósticos?}
+\section{¿Cómo se ven los pronósticos en la práctica?}
 
 \begin{center}
 \includegraphics[width=0.98\textwidth]{pronostico_test.png}
 \end{center}
 
-La línea observada representa lo que realmente ocurrió. La línea punteada
-representa lo estimado por la LSTM.
+En la gráfica, la línea sólida es lo que realmente ocurrió y la línea
+punteada es lo que el modelo LSTM estimó para ese mismo período.
 
 \subsection{Total nacional}
 
-El modelo identifica una recuperación gradual, pero después se estabiliza
-demasiado. No reproduce todos los picos y caídas mensuales observados. Esto
-explica por qué su mejora frente a Prophet fue pequeña y su error porcentual
-continuó siendo alto.
+El modelo capta bien la recuperación gradual después de la pandemia, pero
+luego tiende a ``aplanarse'' más de lo debido: no reproduce cada subida y
+bajada mensual. Esto explica por qué su ventaja frente a Prophet fue pequeña
+y por qué su error porcentual se mantuvo relativamente alto.
 
 \subsection{La Aurora}
 
-El pronóstico se acerca mejor al nivel general posterior a la reapertura. No
-acierta cada pico mensual, pero mantiene una trayectoria más próxima a los
-datos reales. Por eso obtiene una mejora más clara frente a SES.
+Aquí el pronóstico sigue con más fidelidad el nivel general de visitantes
+tras la reapertura de fronteras. No acierta cada pico puntual, pero su
+trayectoria general queda más cerca de los datos reales, lo cual coincide con
+la mejora más marcada que obtuvo frente a SES.
 
-\subsection{¿Por qué no se acierta cada mes?}
+\subsection{¿Por qué el modelo no acierta cada mes exacto?}
 
 \begin{itemize}
-  \item El cierre de 2020 fue extraordinario y no tenía un antecedente
-  comparable.
-  \item No se incluyeron datos sobre vuelos, restricciones, feriados,
-  economía o tipo de cambio.
-  \item El pronóstico cubre más de cinco años, por lo que pequeños errores se
-  acumulan.
+  \item El cierre de 2020 fue un evento extraordinario, sin un antecedente
+  parecido en el historial disponible.
+  \item El modelo no recibió información sobre vuelos, feriados,
+  restricciones migratorias, economía o tipo de cambio.
+  \item El horizonte de pronóstico supera los cinco años, y en horizontes
+  así de largos los pequeños errores se van acumulando mes tras mes.
 \end{itemize}
 
 \callout{Gold}{%
-\textbf{Uso responsable.} El pronóstico sirve como apoyo para planificar,
-pero no debe interpretarse como una cifra exacta ni sustituir la revisión de
-información reciente.
+\textbf{Cómo usar estos pronósticos.} Son una herramienta de apoyo para
+planificar, no una cifra exacta garantizada. Siempre deben revisarse junto con
+información actualizada del contexto.
 }
 
 \newpage
