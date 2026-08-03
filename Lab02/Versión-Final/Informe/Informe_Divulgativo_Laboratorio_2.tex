@@ -125,53 +125,57 @@ enero de 2009 a junio de 2026\\
 % ---------------------------------------------------------------------------
 % PÁGINA 2
 % ---------------------------------------------------------------------------
-\section{¿Qué se estudió y por qué es útil?}
+\section{¿De qué trata este trabajo?}
 
-El objetivo fue aprender del comportamiento histórico de los visitantes
-internacionales para estimar cómo podrían evolucionar en los meses
-siguientes. Un pronóstico de este tipo puede apoyar la planificación de
-personal, atención en fronteras, transporte, promoción turística y capacidad
-de servicio.
+Cada mes, miles de personas cruzan las fronteras de Guatemala como turistas o
+excursionistas. Este laboratorio buscó responder una pregunta práctica:
+\textbf{¿se puede anticipar, con base en el historial, cuántos visitantes
+llegarán en los próximos meses?} Contar con una respuesta razonable ayuda a
+planear personal en fronteras y aeropuertos, coordinar transporte, dimensionar
+la promoción turística y anticipar la capacidad de atención necesaria.
 
-La base contiene \textbf{161,036 registros} y cubre \textbf{210 meses
-consecutivos}, desde enero de 2009 hasta junio de 2026. No se encontraron
-meses faltantes, cantidades negativas ni vacíos en la medida principal.
+Para responder, se trabajó con una base de \textbf{161,036 registros} que
+cubre \textbf{210 meses seguidos}, de enero de 2009 a junio de 2026, sin
+huecos ni valores imposibles en la variable principal.
 
-\subsection{¿A quiénes se contó?}
+\subsection{¿Qué personas se contabilizan?}
 
-Se sumaron dos tipos de visitantes:
+La base distingue dos tipos de visitante, y ambos se sumaron para este
+análisis:
 
 \begin{itemize}
-  \item \textbf{Turistas}: permanecen al menos una noche.
-  \item \textbf{Excursionistas}: visitan el país y regresan el mismo día.
+  \item \textbf{Turistas}: se quedan en el país al menos una noche.
+  \item \textbf{Excursionistas}: entran y salen el mismo día.
 \end{itemize}
 
-No se agregó la categoría ``Viajero'', porque incluye cruces que no siempre
-son visitas turísticas y su forma de registro cambió desde 2023.
+Se dejó fuera la categoría ``Viajero'' porque agrupa cruces que no siempre son
+turísticos, y porque la forma de registrarla cambió a partir de 2023, lo que
+la haría poco comparable con años anteriores.
 
-\subsection{Las dos series pronosticadas}
+\subsection{Las dos series que se pronosticaron}
 
 \begin{tabularx}{\textwidth}{>{\bfseries\color{Blue}}p{3.3cm}X}
 \toprule
-Total nacional & Todos los turistas y excursionistas registrados durante
-cada mes en las fronteras del país.\\
+Total nacional & La suma de todos los turistas y excursionistas que
+ingresaron por cualquier frontera del país en cada mes.\\
 \addlinespace
-01 La Aurora & Visitantes que ingresaron por el principal aeropuerto
+01 La Aurora & Solamente quienes llegaron por el principal aeropuerto
 internacional.\\
 \bottomrule
 \end{tabularx}
 
 \callout{Teal}{%
-\textbf{Idea importante.} No se intentó adivinar el futuro con información
-que todavía no existía. Todos los modelos aprendieron únicamente de los
-meses anteriores a cada período evaluado.
+\textbf{Regla que se respetó en todo el trabajo.} Ningún modelo tuvo acceso a
+información del futuro. Para estimar un mes determinado, únicamente se usó lo
+ocurrido antes de ese mes.
 }
 
-\subsection{Un acontecimiento que cambió la historia}
+\subsection{Un quiebre que marcó la serie}
 
-La pandemia provocó una caída sin precedentes durante 2020 y 2021. Por eso,
-pronosticar esta información es especialmente difícil: los años anteriores no
-contenían un cierre comparable que pudiera servir como ejemplo.
+La pandemia interrumpió los viajes de forma abrupta durante 2020 y 2021, y eso
+dejó una cicatriz difícil de modelar: no existía en el historial ningún
+cierre de magnitud comparable del cual aprender, así que los modelos tuvieron
+que enfrentar un tramo sin precedente directo.
 
 \newpage
 
