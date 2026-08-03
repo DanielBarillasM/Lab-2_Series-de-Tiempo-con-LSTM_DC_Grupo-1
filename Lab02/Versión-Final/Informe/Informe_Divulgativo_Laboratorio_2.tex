@@ -182,10 +182,10 @@ que enfrentar un tramo sin precedente directo.
 % ---------------------------------------------------------------------------
 % PÁGINA 3
 % ---------------------------------------------------------------------------
-\section{¿Cómo se hizo una comparación justa?}
+\section{¿Cómo se aseguró una prueba justa?}
 
-Los 210 meses se mantuvieron en orden. No se mezclaron fechas antiguas con
-fechas futuras.
+Los 210 meses se respetaron en su orden cronológico; en ningún momento se
+usaron meses futuros para ``adivinar'' meses pasados.
 
 \begin{itemize}
   \item \textbf{Entrenamiento}: 147 meses, de enero de 2009 a marzo de 2021.
@@ -196,35 +196,40 @@ fechas futuras.
 \includegraphics[width=0.92\textwidth]{particion_cronologica.png}
 \end{center}
 
-Dentro del entrenamiento se apartó un período más pequeño para decidir qué
-configuración funcionaba mejor. Esto es parecido a estudiar con varios
-ejercicios antes del examen final: se pueden corregir decisiones durante la
-práctica, pero las respuestas del examen permanecen ocultas.
+Dentro de los 147 meses de entrenamiento se apartó, además, un tramo interno
+para decidir cuál configuración de modelo convenía usar. La comparación es
+similar a resolver guías de práctica antes del examen: esas guías permiten
+ajustar la estrategia, pero las respuestas del examen final se mantienen
+guardadas hasta el final.
 
-\subsection{¿Qué significa una ventana de tiempo?}
+\subsection{¿Qué es una ``ventana'' de meses?}
 
-El modelo observa una cantidad fija de meses anteriores antes de estimar el
-siguiente. Se probaron dos opciones:
+Antes de estimar un mes, el modelo revisa una cantidad fija de meses previos.
+Se probaron dos tamaños de ventana:
 
 \begin{itemize}
-  \item 12 meses: un año completo de historia.
-  \item 24 meses: dos años completos de historia.
+  \item 12 meses (un año de historia reciente).
+  \item 24 meses (dos años de historia reciente).
 \end{itemize}
 
-\subsection{¿Cómo se midió el error?}
+\subsection{¿Con qué se midió el acierto?}
 
-Se utilizaron tres indicadores, pero el principal fue RMSE.
+Se calcularon tres indicadores de error, y el más usado para decidir entre
+modelos fue el RMSE.
 
 \begin{itemize}
-  \item \plainterm{MAE}{error promedio expresado en visitantes.}
-  \item \plainterm{RMSE}{da más importancia a los errores grandes.}
-  \item \plainterm{sMAPE}{expresa el error como porcentaje y permite comparar
-  series de distinto tamaño.}
+  \item \plainterm{MAE}{el error promedio, expresado directamente en número
+  de visitantes.}
+  \item \plainterm{RMSE}{parecido al MAE, pero castiga con más fuerza los
+  errores grandes.}
+  \item \plainterm{sMAPE}{expresa el error como porcentaje, lo que permite
+  comparar series de tamaños distintos entre sí.}
 \end{itemize}
 
 \callout{Gold}{%
-\textbf{Cómo leer los resultados.} En todos estos indicadores,
-\textbf{un número menor representa una predicción más cercana a la realidad}.
+\textbf{Regla de lectura.} En los tres indicadores anteriores aplica lo
+mismo: \textbf{mientras más bajo el número, más cerca estuvo el modelo de lo
+que realmente ocurrió}.
 }
 
 \newpage
@@ -232,25 +237,26 @@ Se utilizaron tres indicadores, pero el principal fue RMSE.
 % ---------------------------------------------------------------------------
 % PÁGINA 4
 % ---------------------------------------------------------------------------
-\section{¿Qué es una LSTM?}
+\section{¿Qué es una LSTM y cómo se eligió una?}
 
-Una LSTM es un método que aprende de secuencias ordenadas. Puede imaginarse
-como una memoria con tres decisiones:
+Una LSTM es una técnica pensada para aprender de datos que llegan en orden,
+como los meses de una serie de tiempo. Puede pensarse como una memoria que,
+mes a mes, resuelve tres preguntas:
 
 \begin{enumerate}
-  \item qué información antigua conviene conservar;
-  \item qué información nueva debe incorporarse;
-  \item qué parte de la memoria debe utilizarse para producir la siguiente
-  estimación.
+  \item ¿qué información pasada vale la pena conservar?
+  \item ¿qué información reciente conviene incorporar?
+  \item ¿qué parte de todo lo anterior se usa para calcular la siguiente
+  estimación?
 \end{enumerate}
 
-No se le indicó manualmente cuánto debía subir o bajar cada mes. El método
-ajustó internamente sus parámetros observando ejemplos históricos.
+Nadie le indicó a mano cuánto debía subir o bajar la cifra cada mes: el propio
+método ajustó sus parámetros internos revisando muchos ejemplos históricos.
 
-\subsection{Se probaron varias versiones}
+\subsection{No se apostó a una sola configuración}
 
-Para evitar depender de una única configuración, se evaluaron cuatro modelos
-por cada serie:
+Para no depender de una única receta, se entrenaron y compararon cuatro
+variantes de LSTM por cada serie:
 
 \begin{tabularx}{\textwidth}{lXcc}
 \toprule
@@ -268,16 +274,17 @@ LSTM-2B & Dos capas de memoria & 24 & 16 y 8\\
 \includegraphics[width=0.93\textwidth]{comparacion_configuraciones.png}
 \end{center}
 
-\subsection{Ganadores antes del examen final}
+\subsection{Los candidatos que quedaron mejor posicionados}
 
 \begin{itemize}
-  \item Para el \textbf{total nacional} ganó LSTM-1A.
-  \item Para \textbf{La Aurora} ganó LSTM-2A.
+  \item Para el \textbf{total nacional}, la variante ganadora fue LSTM-1A.
+  \item Para \textbf{La Aurora}, la variante ganadora fue LSTM-2A.
 \end{itemize}
 
-La red más grande no ganó siempre. Esto confirma que un modelo más complejo
-no es necesariamente más preciso. Cuando los datos son limitados, una
-estructura sencilla puede generalizar mejor.
+Vale la pena notar que la red más grande no fue la mejor en ambos casos. Eso
+confirma algo importante: agregar más complejidad no garantiza más precisión.
+Cuando la cantidad de datos disponibles es limitada, una estructura más
+sencilla puede generalizar mejor que una elaborada.
 
 \newpage
 
