@@ -383,42 +383,45 @@ información actualizada del contexto.
 % ---------------------------------------------------------------------------
 % PÁGINA 7
 % ---------------------------------------------------------------------------
-\section{catch22: una huella digital para cada serie}
+\section{catch22: una forma de ``huella digital'' para cada serie}
 
-Además de pronosticar, se buscó entender qué series se comportan de manera
-parecida. Para ello se utilizó \textit{catch22}.
+Más allá de pronosticar, también interesaba entender qué series se comportan
+de manera parecida entre sí. Para eso se recurrió a una técnica llamada
+\textit{catch22}.
 
-Puede imaginarse como una \textbf{huella digital formada por 22 números}.
-Cada número describe un aspecto distinto:
+La idea es sencilla de imaginar: cada serie recibe una \textbf{huella digital
+de 22 números}, donde cada número resume un aspecto distinto de su
+comportamiento en el tiempo, por ejemplo:
 
 \begin{itemize}
-  \item repetición y dependencia entre meses;
-  \item presencia de ciclos;
-  \item meses excepcionalmente altos o bajos;
-  \item cambios rápidos o lentos;
-  \item estabilidad y duración de las fluctuaciones.
+  \item qué tanto se repiten o dependen los valores entre meses cercanos;
+  \item si existen ciclos o patrones estacionales;
+  \item si hay meses inusualmente altos o bajos;
+  \item qué tan rápido o lento cambia la serie;
+  \item qué tan estables o volátiles son sus fluctuaciones.
 \end{itemize}
 
-Se construyeron huellas para siete series:
+Se calculó esta huella para siete series distintas:
 
 \begin{itemize}
-  \item total nacional;
-  \item América Del Centro, América Del Norte y Europa;
-  \item La Aurora, Valle Nuevo y San Cristóbal.
+  \item el total nacional;
+  \item las regiones América Del Centro, América Del Norte y Europa;
+  \item las fronteras La Aurora, Valle Nuevo y San Cristóbal.
 \end{itemize}
 
 \begin{center}
 \includegraphics[width=0.98\textwidth]{catch22_heatmap.png}
 \end{center}
 
-En el mapa, rojo y azul no significan ``bueno'' o ``malo''. Solamente indican
-que una característica está por encima o por debajo del promedio de las siete
-series.
+En este mapa de calor, los colores rojo y azul no significan ``bueno'' o
+``malo''; simplemente muestran si una característica está por encima o por
+debajo del promedio de las siete series analizadas.
 
 \callout{Teal}{%
-\textbf{¿Por qué es útil?} Dos series pueden tener cantidades muy diferentes
-y, aun así, compartir una forma temporal parecida. catch22 permite estudiar
-esa forma sin limitarse al tamaño de los números.
+\textbf{¿Para qué sirve esto?} Dos series pueden tener cantidades muy
+distintas de visitantes y, aun así, moverse con una forma parecida en el
+tiempo. catch22 permite comparar esa forma, independientemente de la escala
+de cada serie.
 }
 
 \newpage
@@ -426,42 +429,46 @@ esa forma sin limitarse al tamaño de los números.
 % ---------------------------------------------------------------------------
 % PÁGINA 8
 % ---------------------------------------------------------------------------
-\section{¿Qué series se parecen?}
+\section{¿Qué series terminaron pareciéndose más?}
 
-El análisis redujo las 22 características a un mapa de dos dimensiones. Los
-puntos cercanos representan comportamientos más parecidos.
+Las 22 características de cada serie se resumieron en un mapa de dos
+dimensiones. En ese mapa, los puntos que quedan más cerca representan series
+con comportamientos más similares.
 
 \begin{center}
 \includegraphics[width=0.73\textwidth]{catch22_pca.png}
 \end{center}
 
-\subsection{Resultados más importantes}
+\subsection{Los hallazgos más relevantes}
 
 \begin{itemize}
-  \item \textbf{Par más parecido}: total nacional y América Del Centro.
-  \item \textbf{Serie más diferente}: 01 La Aurora.
-  \item \textbf{Grupo 1}: total, América Del Centro, Valle Nuevo y San
-  Cristóbal.
+  \item \textbf{El par más parecido} fue el total nacional con América Del
+  Centro.
+  \item \textbf{La serie más distinta} de todas resultó ser 01 La Aurora.
+  \item \textbf{Grupo 1}: total nacional, América Del Centro, Valle Nuevo y
+  San Cristóbal.
   \item \textbf{Grupo 2}: América Del Norte y Europa.
-  \item \textbf{Grupo 3}: La Aurora por sí sola.
+  \item \textbf{Grupo 3}: La Aurora, sola, sin acompañamiento cercano.
 \end{itemize}
 
-La cercanía del total con América Del Centro concuerda con la importancia de
-los mercados centroamericanos y las fronteras terrestres. La Aurora se
-separa porque depende de vuelos y tuvo una caída y una recuperación
-particulares.
+Que el total nacional quede cerca de América Del Centro es coherente con el
+peso que tienen los mercados centroamericanos y las fronteras terrestres. La
+Aurora, en cambio, se aparta del resto porque depende directamente de los
+vuelos internacionales y vivió una caída y una recuperación con un ritmo muy
+particular.
 
-\subsection{Un descubrimiento importante}
+\subsection{Un hallazgo que vale la pena resaltar}
 
-Pertenecer a la misma categoría no garantiza comportarse igual. La Aurora,
-Valle Nuevo y San Cristóbal son fronteras, pero La Aurora no se agrupa con las
-otras dos. La forma en que cambia una serie a lo largo del tiempo puede ser
-más informativa que su etiqueta administrativa.
+Pertenecer a la misma categoría administrativa no garantiza un comportamiento
+parecido. La Aurora, Valle Nuevo y San Cristóbal son todas fronteras, pero La
+Aurora no terminó agrupada con las otras dos. Esto sugiere que la forma en
+que cambia una serie a lo largo del tiempo puede decir más sobre ella que la
+simple etiqueta que se le asigne.
 
 \callout{Gold}{%
-El análisis utiliza únicamente siete series. Los grupos son una guía
-exploratoria y no una clasificación permanente de todas las fronteras o
-mercados.
+Este análisis se hizo con solo siete series, así que los grupos encontrados
+deben tomarse como una guía exploratoria y no como una clasificación
+definitiva de todas las fronteras o mercados del país.
 }
 
 \newpage
