@@ -3,14 +3,30 @@
 ![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?logo=python&logoColor=white)
 ![Jupyter](https://img.shields.io/badge/Jupyter-Notebook-F37626?logo=jupyter&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-LSTM-013243?logo=numpy&logoColor=white)
-![Estado](https://img.shields.io/badge/Estado-Versi%C3%B3n%20actual-1D9A99)
+![Estado](https://img.shields.io/badge/Estado-Laboratorio%20completo-1D9A99)
+![Figuras](https://img.shields.io/badge/Figuras-13%20actualizadas-2A9D8F)
+![Informes](https://img.shields.io/badge/Informes-T%C3%A9cnico%20%2B%20divulgativo-176B87)
 
 Análisis y pronóstico de series temporales de visitantes internacionales en
 Guatemala mediante modelos **LSTM**, comparación con métodos tradicionales y
 exploración de similitud utilizando **catch22**.
 
+Esta es la versión final y reproducible del Laboratorio 2. Incluye el notebook
+completo y ejecutado, la base de datos, las 13 figuras actuales, un informe
+técnico, un informe divulgativo para público no especializado y los PDF
+compilados de ambos documentos.
+
 > **Repositorio oficial:**  
 > [DanielBarillasM/Lab-2_Series-de-Tiempo-con-LSTM_DC_Grupo-1](https://github.com/DanielBarillasM/Lab-2_Series-de-Tiempo-con-LSTM_DC_Grupo-1)
+
+### Accesos principales
+
+| Entregable | Archivo |
+|---|---|
+| Notebook final | [`Laboratorio_2_Deep_Learning_COMPLETO.ipynb`](Lab02/Versión-Final/Laboratorio_2_Deep_Learning_COMPLETO.ipynb) |
+| Informe técnico | [`Informe_Tecnico_Laboratorio_2_Deep_Learning.pdf`](Lab02/Versión-Final/Informe/Informe_Tecnico_Laboratorio_2_Deep_Learning.pdf) |
+| Informe divulgativo | [`Informe_Divulgativo_Laboratorio_2.pdf`](Lab02/Versión-Final/Informe/Informe_Divulgativo_Laboratorio_2.pdf) |
+| Dependencias | [`requirements.txt`](requirements.txt) |
 
 ---
 
@@ -42,7 +58,7 @@ El laboratorio estudia el comportamiento mensual de los visitantes
 internacionales que ingresan a Guatemala y evalúa si una red neuronal de tipo
 **Long Short-Term Memory (LSTM)** puede producir pronósticos competitivos.
 
-La versión actual desarrolla los siguientes componentes:
+La versión final desarrolla los siguientes componentes:
 
 1. Preparación y validación de la base de migración.
 2. Reconstrucción de series temporales mensuales.
@@ -54,6 +70,10 @@ La versión actual desarrolla los siguientes componentes:
 8. Análisis de similitud mediante PCA, distancias y agrupamiento jerárquico.
 9. Evaluación experimental de una LSTM enriquecida con características
    catch22.
+10. Generación de 13 figuras actualizadas directamente desde las salidas del
+    notebook final.
+11. Elaboración de un informe técnico y un informe divulgativo, ambos
+    alineados con las métricas, figuras y conclusiones del notebook.
 
 ---
 
@@ -66,8 +86,8 @@ La actividad solicitaba, como mínimo:
 - comparación con modelos tradicionales;
 - exploración de similitud mediante el algoritmo catch22.
 
-La versión actual cumple estos puntos mediante cuatro configuraciones
-experimentales:
+La versión final cumple estos puntos mediante cuatro configuraciones
+principales por cada serie:
 
 | Configuración | Ventana temporal | Unidades LSTM | Capas | Tasa de aprendizaje |
 |---|---:|---:|---:|---:|
@@ -79,6 +99,11 @@ experimentales:
 Las configuraciones fueron comparadas con un conjunto de validación separado.
 Después se reentrenó la mejor alternativa de cada serie y se evaluó una sola
 vez en el conjunto final de prueba.
+
+También se documentaron dos diseños adicionales, `LSTM-1X` y `LSTM-2X`, que
+fueron probados en ambas series y luego descartados. Su inclusión permite
+explicar por qué una red más grande o una ventana más larga no garantizan una
+mejor capacidad de generalización.
 
 ---
 
@@ -236,6 +261,24 @@ El modelo enriquecido no superó a la LSTM base. Esto muestra que añadir más
 variables no garantiza una mejor predicción; las características adicionales
 deben aportar información complementaria y estable.
 
+![LSTM enriquecida con catch22](Lab02/Versión-Final/Informe/figuras/lstm_catch22.png)
+
+---
+
+## Informes y figuras finales
+
+El repositorio contiene dos versiones del informe:
+
+- **Informe técnico:** documenta la preparación de datos, implementación de la
+  LSTM, tuneo, métricas, candidatos descartados, comparación con el Laboratorio
+  1, análisis catch22 y modelo enriquecido.
+- **Informe divulgativo:** resume los mismos resultados en lenguaje sencillo
+  para lectores sin experiencia en programación o estadística.
+
+Ambos informes utilizan las figuras exportadas desde la ejecución final del
+notebook. La carpeta `figuras/` contiene 13 archivos PNG actualizados y no debe
+separarse de los archivos `.tex`.
+
 ---
 
 ## Estructura actual del repositorio
@@ -255,7 +298,9 @@ deben aportar información complementaria y estable.
 │       ├── Base_Migracion_2009-2026jun.xlsx
 │       ├── Laboratorio_2_Deep_Learning_COMPLETO.ipynb
 │       └── Informe/
+│           ├── Informe_Divulgativo_Laboratorio_2.pdf
 │           ├── Informe_Divulgativo_Laboratorio_2.tex
+│           ├── Informe_Tecnico_Laboratorio_2_Deep_Learning.pdf
 │           ├── Informe_Tecnico_Laboratorio_2_Deep_Learning.tex
 │           └── figuras/
 │               ├── catch22_correlaciones.png
@@ -271,7 +316,8 @@ deben aportar información complementaria y estable.
 │               ├── pronostico_test.png
 │               ├── series_seleccionadas.png
 │               └── validacion_predicciones.png
-└── README.md
+├── README.md
+└── requirements.txt
 ```
 
 ### Descripción de carpetas
@@ -281,8 +327,9 @@ deben aportar información complementaria y estable.
 | `Lab02/avances/` | Entrega realizada durante el período de clase: base y notebook del avance. |
 | `Lab02/Repositorio/` | Portada utilizada para presentar el enlace del repositorio. |
 | `Lab02/Versión-Final/` | Base y notebook completo, ejecutado y documentado. |
-| `Lab02/Versión-Final/Informe/` | Fuentes LaTeX de los informes técnico y divulgativo. |
-| `Lab02/Versión-Final/Informe/figuras/` | Gráficas exportadas desde el notebook final. |
+| `Lab02/Versión-Final/Informe/` | Fuentes LaTeX y PDF compilados de los informes técnico y divulgativo. |
+| `Lab02/Versión-Final/Informe/figuras/` | Las 13 gráficas actualizadas y exportadas desde el notebook final. |
+| `requirements.txt` | Dependencias necesarias para reproducir la ejecución. |
 
 ---
 
@@ -315,8 +362,26 @@ source .venv/bin/activate
 
 ```bash
 python -m pip install --upgrade pip
-pip install jupyter numpy pandas matplotlib seaborn scipy scikit-learn openpyxl pycatch22==0.4.5
+python -m pip install -r requirements.txt
 ```
+
+El archivo `requirements.txt` contiene exactamente:
+
+```text
+jupyter
+numpy==2.4.4
+pandas==3.0.2
+matplotlib
+seaborn
+scipy
+scikit-learn
+openpyxl
+pycatch22==0.4.5
+```
+
+Las versiones de NumPy, pandas y pycatch22 se fijaron para que el entorno sea
+consistente con la versión final del laboratorio. Las demás bibliotecas se
+instalan en una versión compatible disponible para el entorno utilizado.
 
 ### 4. Abrir Jupyter Notebook
 
@@ -357,7 +422,8 @@ pdflatex Informe_Divulgativo_Laboratorio_2.tex
 ```
 
 La doble compilación actualiza correctamente índices, referencias y números de
-página.
+página. Ambos documentos fueron verificados con **PdfLaTeX**; no requieren
+XeLaTeX ni LuaLaTeX.
 
 ---
 
@@ -365,8 +431,8 @@ página.
 
 - Python 3.
 - Jupyter Notebook.
-- NumPy.
-- pandas.
+- NumPy 2.4.4.
+- pandas 3.0.2.
 - Matplotlib.
 - seaborn.
 - SciPy.
@@ -389,6 +455,8 @@ El notebook:
 - reserva la prueba para la evaluación definitiva;
 - deja visibles las tablas, gráficas y conclusiones;
 - documenta las decisiones metodológicas y sus limitaciones.
+- conserva las mismas métricas y nombres de figuras utilizados por los dos
+  informes.
 
 Los tiempos de ejecución pueden cambiar según el procesador y la memoria
 disponible.
@@ -409,6 +477,8 @@ disponible.
 6. Agregar características catch22 directamente a la LSTM no mejoró el
    pronóstico, por lo que la LSTM base se mantiene como la mejor alternativa
    para esa serie.
+7. Los informes técnico y divulgativo quedaron sincronizados con el notebook
+   final y utilizan las 13 figuras actuales del análisis.
 
 ---
 
