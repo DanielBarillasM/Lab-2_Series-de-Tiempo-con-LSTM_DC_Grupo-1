@@ -1,0 +1,9 @@
+jupyter
+numpy==2.4.4
+pandas==3.0.2
+matplotlib
+seaborn
+scipy
+scikit-learn
+openpyxl
+pycatch22==0.4.5
