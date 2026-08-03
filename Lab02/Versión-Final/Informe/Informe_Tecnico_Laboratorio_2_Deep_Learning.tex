@@ -454,6 +454,50 @@ total fue 3.0 veces.
 \label{fig:validacion}
 \end{figure}
 
+\subsection{Configuraciones descartadas}
+
+La rejilla de la Tabla~5 es reducida a propósito. Se llegó a ese tamaño
+después de evaluar redes más grandes y ventanas más largas, cuyos resultados
+se documentan aquí porque explican la decisión mejor que un párrafo aislado.
+
+\begin{table}[H]
+\centering
+\caption{Configuraciones descartadas y su desempeño en validación}
+\small
+\begin{tabular}{llrrrc}
+\toprule
+\textbf{Serie} & \textbf{Modelo} & \textbf{RMSE} & \textbf{MAE} &
+\textbf{Época} & \textbf{Ventana / unidades}\\
+\midrule
+Total nacional & LSTM-1X (descartada) & 138,590 & 105,215 & 1/13 & 12 / 64\\
+Total nacional & LSTM-2X (descartada) & 119,488 & 98,475 & 32/44 & 36 / 32, 16\\
+\addlinespace
+La Aurora & LSTM-1X (descartada) & 52,938 & 37,124 & 1/13 & 12 / 64\\
+La Aurora & LSTM-2X (descartada) & 58,512 & 48,810 & 17/29 & 36 / 32, 16\\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Los dos casos fallan por caminos distintos. La red de 64 unidades
+(LSTM-1X) se detiene en la época 1 con una brecha entre pérdida de ajuste y
+de validación de 7.6 veces (0.141 contra 1.066 en el total nacional):
+memoriza los 105 ejemplos de ajuste antes de alcanzar a aprender la
+estacionalidad. La configuración de ventana 36 sin regularización L2
+(LSTM-2X) llega a una brecha de 15.5 veces (0.051 contra 0.792), la mayor de
+todas las configuraciones probadas.
+
+\warningbox{En el total nacional, LSTM-2X obtuvo un RMSE de validación
+menor que el ganador finalmente seleccionado: 119,488 contra 121,318 de
+LSTM-1A, una diferencia de 1.5\%. No se incorporó a la rejilla final ni se
+eligió como ganadora por tres razones: (1) la ventana de 36 meses reduce los
+ejemplos de ajuste de 105 a 81 y sacrifica los primeros tres años de la
+serie; (2) la ventaja no se sostiene en la otra serie, donde LSTM-2X queda
+12.4\% por debajo de LSTM-2A en La Aurora (58,512 contra 52,041); y (3) es la
+configuración con la mayor brecha entre ajuste y validación, por lo que una
+diferencia de 1.5\% en una sola serie no constituye evidencia suficiente. Se
+prefirió aplicar un criterio único a ambas series antes que escoger la mejor
+cifra de cada tabla por separado.}
+
 \section{Pronóstico definitivo y comparación}
 
 \subsection{Reentrenamiento}
